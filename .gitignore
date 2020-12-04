@@ -114,3 +114,6 @@ yarn.lock
 *.ipr
 *.iws
 *.iml
+
+!_config.yml
+.DS_Store
