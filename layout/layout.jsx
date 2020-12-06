@@ -7,27 +7,11 @@ const Footer = require('./common/footer');
 const Scripts = require('./common/scripts');
 const Search = require('./common/search');
 
-const responsiveConfig = (config, page) => {
-    if (page.layout !== 'post') {
-        return config;
-    }
-    return {
-        ...config,
-        widgets: config.widgets.filter(widget => widget.type === 'toc' || widget.type === 'profile')
-    };
-}
-
 module.exports = class extends Component {
     render() {
-        const { site, config: originConfig, page, helper, body } = this.props;
+        const { site, config, page, helper, body } = this.props;
 
-        site.posts.forEach(p => {
-            if (!p.thumbnail) {
-                p.thumbnail = '/img/thumbnail.svg';
-            }
-        });
-
-        const config = responsiveConfig(originConfig, page);
+        site.posts && site.posts.filter(p => !p.thumbnail).forEach(p => p.thumbnail = '/img/thumbnail.svg');
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets);

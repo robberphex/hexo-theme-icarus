@@ -116,4 +116,5 @@ yarn.lock
 *.iml
 
 !_config.yml
+!_config.post.yml
 .DS_Store
