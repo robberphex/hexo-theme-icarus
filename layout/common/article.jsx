@@ -41,8 +41,8 @@ module.exports = class extends Component {
                         <img class="fill" src={cover} alt={page.title || cover} />
                     </span>}
                 </div> : null}
-                {/* Metadata */}
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
+                    {/* Metadata */}
                     {/* Title */}
                     <h1 className="title is-size-3 is-size-4-mobile has-text-weight-normal">
                         {index ?
