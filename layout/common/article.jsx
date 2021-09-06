@@ -26,6 +26,9 @@ module.exports = class extends Component {
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
         const cover = page.cover ? url_for(page.cover) : null;
+        const updateTime = article && article.update_time !== undefined ? article.update_time : true;
+        const isUpdated = page.updated && !moment(page.date).isSame(moment(page.updated));
+        const shouldShowUpdated = page.updated && ((updateTime === 'auto' && isUpdated) || updateTime === true);
 
         return <Fragment>
             {/* Main content */}
@@ -54,12 +57,12 @@ module.exports = class extends Component {
                             {/* Creation Date */}
                             {page.date && <span class="level-item">
                                 <i className="far fa-calendar-alt">&nbsp;</i>
-                                <time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">{date(page.date)}</time>
+                                <time dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
                             </span>}
                             {/* Last Update Date */}
-                            {page.updated && <span class="level-item is-hidden-mobile">
+                            {shouldShowUpdated && <span class="level-item is-hidden-mobile">
                                 <i class="far fa-calendar-check">&nbsp;</i>
-                                <time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">{date(page.updated)}</time>
+                                <time dateTime={date_xml(page.updated)} title={date_xml(page.updated)}>{date(page.updated)}</time>
                             </span>}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
