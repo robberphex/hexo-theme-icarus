@@ -26,6 +26,7 @@ class Profile extends Component {
             location,
             counter,
             followLink,
+            followWechat,
             followTitle,
             socialLinks
         } = this.props;
@@ -72,9 +73,23 @@ class Profile extends Component {
                         </div>
                     </a>
                 </nav>
-                {followLink ? <div class="level">
-                    <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener"><i class="fab fa-github"></i>&nbsp;&nbsp;{followTitle}</a>
-                </div> : null}
+                {followWechat ?
+                <div class="level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <figure class="image is-96x96 mx-auto mb-2">
+                                <img class="avatar" src={followWechat} alt="Robert Lu"/>
+                            </figure>
+                            <p class="is-size-6 is-block"><strong>关注我的公众号</strong></p>
+                        </div>
+                    </div>
+                </div>
+                :null}
+                {followLink ?
+                    <div class="level">
+                        <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener"><i class="fab fa-github"></i>&nbsp;&nbsp;{followTitle}</a>
+                    </div>
+                : null}
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
             </div>
         </div>;
@@ -91,6 +106,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
         author_title,
         location,
         follow_link,
+        follow_wechat,
         social_links
     } = widget;
     const { url_for, _p, __ } = helper;
@@ -148,6 +164,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
             }
         },
         followLink: follow_link ? url_for(follow_link) : undefined,
+        followWechat: follow_wechat ? url_for(follow_wechat) : undefined,
         followTitle: __('widget.follow'),
         socialLinks
     };
