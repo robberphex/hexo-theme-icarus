@@ -56,6 +56,8 @@ class Footer extends Component {
                     </div>
                 </div>
             </div>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6042731151775758"
+crossorigin="anonymous"></script>
         </footer>;
     }
 }
